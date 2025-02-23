@@ -1,30 +1,22 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-
-# This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Shelter.API/Shelter.API.csproj", "Shelter.API/"]
-RUN dotnet restore "./Shelter.API/Shelter.API.csproj"
+COPY ["src/Shelter.API/Shelter.API.csproj", "Shelter.API/"]
+COPY ["src/Shelter.Application/Shelter.Application.csproj", "Shelter.Application/"]
+COPY ["src/Shelter.Infrastructure/Shelter.Infrastructure.csproj", "Shelter.Infrastructure/"]
+COPY ["src/Shelter.Shared/Shelter.Shared.csproj", "Shelter.Shared/"]
+COPY "Directory.Build.props" "Directory.Build.props"
+COPY "Directory.Packages.props" "Directory.Packages.props"
+RUN dotnet restore --runtime linux-musl-x64 "./Shelter.API/Shelter.API.csproj"
 COPY . .
 WORKDIR "/src/Shelter.API"
-RUN dotnet build "./Shelter.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Shelter.API.csproj" -c $BUILD_CONFIGURATION --runtime linux-musl-x64 -o /app/build 
 
-# This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Shelter.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Shelter.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false --runtime linux-musl-x64
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
+FROM scratch AS runtime
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Shelter.API.dll"]
+ENTRYPOINT ["/app/Shelter.API"]
