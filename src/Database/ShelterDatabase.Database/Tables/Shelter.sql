@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Shelter]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Name] NVARCHAR(50) NOT NULL,
+	[Address] NVARCHAR(50) NOT NULL,
+	[Status] NVARCHAR(50) NOT NULL,
+	[Capacity] INT NOT NULL,
+	[CurrentOccupation] INT NOT NULL DEFAULT 0,
+	[CreationDate] DATETIME NOT NULL,
+	[LastUpdate] DATETIME NOT NULL
+)

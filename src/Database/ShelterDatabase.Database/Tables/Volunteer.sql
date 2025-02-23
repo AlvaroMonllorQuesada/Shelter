@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[Volunteer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[PhoneNumber] NVARCHAR(50),
+	[City] NVARCHAR(50),
+	[JoinDate] DATETIME,
+	[Status] NVARCHAR(50) NOT NULL,
+	[Role] NVARCHAR(50),
+	[RoleId] INT NULL,
+    UserName NVARCHAR(256) NOT NULL UNIQUE,
+    NormalizedUserName NVARCHAR(256) NOT NULL UNIQUE,
+    Email NVARCHAR(256) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(MAX) NULL
+    CONSTRAINT FK_Volunteer_Role FOREIGN KEY (RoleId) REFERENCES UserRole(Id)
+)
