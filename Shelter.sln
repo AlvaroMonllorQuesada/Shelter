@@ -17,19 +17,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{2A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{06073D9B-1F9F-49FA-9248-C28A4E47E367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.API", "src/Shelter.API\Shelter.API.csproj", "{D0393496-90E4-4EA1-A511-4AE473CD09F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.API", "src\Shelter.API\Shelter.API.csproj", "{D0393496-90E4-4EA1-A511-4AE473CD09F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Application", "src/Shelter.Application\Shelter.Application.csproj", "{3977D73F-6A0D-41B5-B8AC-BE90D8C2CF86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Application", "src\Shelter.Application\Shelter.Application.csproj", "{3977D73F-6A0D-41B5-B8AC-BE90D8C2CF86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Infrastructure", "src/Shelter.Infrastructure\Shelter.Infrastructure.csproj", "{95E996CF-6137-40EC-8FD3-B471EF2ECA51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Infrastructure", "src\Shelter.Infrastructure\Shelter.Infrastructure.csproj", "{95E996CF-6137-40EC-8FD3-B471EF2ECA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Shared", "src/Shelter.Shared\Shelter.Shared.csproj", "{C99A68C9-041C-4FFF-9D5D-4CCE10079114}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Shared", "src\Shelter.Shared\Shelter.Shared.csproj", "{C99A68C9-041C-4FFF-9D5D-4CCE10079114}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shelter.Database", "src/Shelter.Database\Shelter.Database.sqlproj", "{1DD0EBA9-9694-444F-8C91-EF3A1629E70F}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shelter.Database", "src\Shelter.Database\Shelter.Database.sqlproj", "{1DD0EBA9-9694-444F-8C91-EF3A1629E70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Frontend", "src/Shelter.Frontend\Shelter.Frontend.csproj", "{1837531E-120D-4BEA-B4D8-D3012622BBBD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Frontend.Client", "src/Shelter.Frontend.Client\Shelter.Frontend.Client.csproj", "{2210E239-358F-4A1A-ADF0-6D90D3532FCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelter.Frontend", "src\Shelter.Frontend\Shelter.Frontend.csproj", "{500E4B03-03E8-4C09-A932-739A3FF9ED43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,14 +57,10 @@ Global
 		{1DD0EBA9-9694-444F-8C91-EF3A1629E70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DD0EBA9-9694-444F-8C91-EF3A1629E70F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1DD0EBA9-9694-444F-8C91-EF3A1629E70F}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{1837531E-120D-4BEA-B4D8-D3012622BBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1837531E-120D-4BEA-B4D8-D3012622BBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1837531E-120D-4BEA-B4D8-D3012622BBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1837531E-120D-4BEA-B4D8-D3012622BBBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2210E239-358F-4A1A-ADF0-6D90D3532FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2210E239-358F-4A1A-ADF0-6D90D3532FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2210E239-358F-4A1A-ADF0-6D90D3532FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2210E239-358F-4A1A-ADF0-6D90D3532FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500E4B03-03E8-4C09-A932-739A3FF9ED43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500E4B03-03E8-4C09-A932-739A3FF9ED43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500E4B03-03E8-4C09-A932-739A3FF9ED43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500E4B03-03E8-4C09-A932-739A3FF9ED43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,7 +74,6 @@ Global
 		{95E996CF-6137-40EC-8FD3-B471EF2ECA51} = {0C13A78B-5DE3-4C67-B74A-D222B4867379}
 		{C99A68C9-041C-4FFF-9D5D-4CCE10079114} = {0C13A78B-5DE3-4C67-B74A-D222B4867379}
 		{1DD0EBA9-9694-444F-8C91-EF3A1629E70F} = {2A9D2C29-59E5-4045-B90C-366664F171E2}
-		{1837531E-120D-4BEA-B4D8-D3012622BBBD} = {E1876A84-FF4C-46BD-95E3-44EE085E4183}
-		{2210E239-358F-4A1A-ADF0-6D90D3532FCD} = {E1876A84-FF4C-46BD-95E3-44EE085E4183}
+		{500E4B03-03E8-4C09-A932-739A3FF9ED43} = {E1876A84-FF4C-46BD-95E3-44EE085E4183}
 	EndGlobalSection
 EndGlobal
