@@ -1,6 +1,6 @@
 using Shelter.API.Features.Animals.HealthRecords.GetHealthRecord;
 
-namespace Shelter.API.Features.Animals.HealthRecords.GetHealtRecord;
+namespace Shelter.API.Features.Animals.HealthRecords.GetHealthRecord;
 
 public record Handler() : GetHandlerAsync<Request>("/animals/{AnimalId}/health-records/{Id}")
 {
