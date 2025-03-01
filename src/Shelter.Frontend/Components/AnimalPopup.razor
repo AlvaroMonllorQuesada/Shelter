@@ -1,0 +1,54 @@
+<div class="modal show d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Animal</h5>
+                <button type="button" class="btn-close" @onclick="CerrarPopup"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" @bind="Animal.Nombre" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Especie</label>
+                    <input type="text" class="form-control" @bind="Animal.Especie" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Edad</label>
+                    <input type="number" class="form-control" @bind="Animal.Edad" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado de Salud</label>
+                    <input type="text" class="form-control" @bind="Animal.EstadoSalud" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" @bind="Animal.Estado">
+                        <option>En Tratamiento</option>
+                        <option>Recuperado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @onclick="GuardarCambios">Guardar</button>
+                <button type="button" class="btn btn-secondary" @onclick="CerrarPopup">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public AnimalDto Animal { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    private void GuardarCambios()
+    {
+        OnClose.InvokeAsync();
+    }
+
+    private void CerrarPopup()
+    {
+        OnClose.InvokeAsync();
+    }
+}

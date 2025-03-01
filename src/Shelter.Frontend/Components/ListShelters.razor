@@ -1,0 +1,77 @@
+@using System.Collections.Generic
+
+<div class="container-fluid">
+    <h3>Listado de Recintos</h3>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th class="w-auto">Nombre</th>
+                <th class="w-auto">Refugio</th>
+                <th class="w-auto">Tipo</th>
+                <th class="w-auto">Ocupación Actual</th>
+                <th class="w-auto">Capacidad</th>
+                <th class="w-auto">Estado</th>
+                <th class="w-auto">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recinto in Recintos)
+            {
+                <tr>
+                    <td>@recinto.Nombre</td>
+                    <td>@recinto.Refugio</td>
+                    <td>@recinto.Tipo</td>
+                    <td>@recinto.OcupacionActual</td>
+                    <td>@recinto.Capacidad</td>
+                    <td>
+                        <span class="badge @(recinto.Estado == "Disponible" ? "bg-success" : "bg-danger")">
+                            @recinto.Estado
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" @onclick="() => ToggleAnimales(recinto.Nombre)">
+                            @(recinto.MostrarAnimales ? "Ocultar Animales" : "Ver Animales")
+                        </button>
+                    </td>
+                </tr>
+                @if (recinto.MostrarAnimales)
+                {
+                    <tr>
+                        <td colspan="7">
+                            <ListAnimals ShelterZoneName="@recinto.Nombre"/>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    public class Recinto
+    {
+        public string Nombre { get; set; }
+        public string Refugio { get; set; }
+        public string Tipo { get; set; }
+        public int Capacidad { get; set; }
+        public int OcupacionActual { get; set; }
+        public string Estado { get; set; }
+        public bool MostrarAnimales { get; set; } = false;
+    }
+
+    public List<Recinto> Recintos { get; set; } = new()
+    {
+        new Recinto { Nombre = "Recinto A", Refugio = "Refugio Norte", Tipo = "Grande", Capacidad = 50, OcupacionActual = 30, Estado = "Disponible" },
+        new Recinto { Nombre = "Recinto B", Refugio = "Refugio Sur", Tipo = "Pequeño", Capacidad = 20, OcupacionActual = 20, Estado = "Ocupado" },
+        new Recinto { Nombre = "Recinto C", Refugio = "Refugio Este", Tipo = "Mediano", Capacidad = 30, OcupacionActual = 10, Estado = "Disponible" }
+    };
+
+    private void ToggleAnimales(string nombreRecinto)
+    {
+        var recinto = Recintos.FirstOrDefault(r => r.Nombre == nombreRecinto);
+        if (recinto != null)
+        {
+            recinto.MostrarAnimales = !recinto.MostrarAnimales;
+        }
+    }
+}

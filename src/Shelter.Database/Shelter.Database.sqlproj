@@ -1,5 +1,5 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-  <Sdk Name="Microsoft.Build.Sql" />
+  <Sdk Name="Microsoft.Build.Sql" Version="1.0.0-rc1"/>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -76,5 +76,6 @@
     <Build Include="Tables\UserRole.sql" />
     <Build Include="Tables\AnimalTreatment.sql" />
     <Build Include="Tables\AnimalMedia.sql" />
+    <Folder Include="Tables\" />
   </ItemGroup>
 </Project>

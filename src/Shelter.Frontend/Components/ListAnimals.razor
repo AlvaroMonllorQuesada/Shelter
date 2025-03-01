@@ -1,0 +1,89 @@
+@using System.Collections.Generic
+@using Shelter.Shared.DTOs
+
+<div class="container-fluid">
+    <h4>Animales en el Recinto @ShelterZoneName</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Edad</th>
+                <th>Estado de Salud</th>
+                <th>Fecha de Admisión</th>
+                <th>Estado</th>
+                <th>Fotos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var animal in Animales)
+            {
+                <tr>
+                    <td>@animal.Nombre</td>
+                    <td>@animal.Especie</td>
+                    <td>@animal.Edad años</td>
+                    <td>@animal.EstadoSalud</td>
+                    <td>@animal.FechaAdmision.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <span class="badge @(animal.Estado == "En Tratamiento" ? "bg-warning" : "bg-success")">
+                            @animal.Estado
+                        </span>
+                    </td>
+                    <td>
+                        <div id="carousel-@animal.Nombre" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach (var foto in animal.Fotos.Select((url, index) => new { url, index }))
+                                {
+                                    <div class="carousel-item @(foto.index == 0 ? "active" : "")">
+                                        <img src="@foto.url" class="d-block w-100" alt="Foto de @animal.Nombre">
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@animal.Nombre" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-@animal.Nombre" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => EditarAnimal(animal)">Editar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (AnimalSeleccionado != null)
+    {
+        <AnimalPopup Animal="AnimalSeleccionado" OnClose="CerrarPopup" />
+    }
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string ShelterZoneName {get; set;} = string.Empty;
+
+    public List<AnimalDto> Animales { get; set; } = new()
+    {
+        new AnimalDto { Nombre = "Luna", Especie = "Tigre", Edad = 5, EstadoSalud = "Saludable", FechaAdmision = DateTime.Now.AddYears(-2), Estado = "En Tratamiento", Fotos = new List<string>{"foto1.jpg", "foto2.jpg"} },
+        new AnimalDto { Nombre = "Max", Especie = "Elefante", Edad = 10, EstadoSalud = "Recuperado", FechaAdmision = DateTime.Now.AddYears(-3), Estado = "Recuperado", Fotos = new List<string>{"elefante1.jpg", "elefante2.jpg"} }
+    };
+
+    private AnimalDto? AnimalSeleccionado;
+
+    private void EditarAnimal(AnimalDto animal)
+    {
+        AnimalSeleccionado = animal;
+    }
+
+    private void CerrarPopup()
+    {
+        AnimalSeleccionado = null;
+    }
+}

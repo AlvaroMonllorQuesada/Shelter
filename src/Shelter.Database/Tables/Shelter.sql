@@ -7,5 +7,5 @@
 	[Capacity] INT NOT NULL,
 	[CurrentOccupation] INT NOT NULL DEFAULT 0,
 	[CreationDate] DATETIME NOT NULL,
-	[LastUpdate] DATETIME NOT NULL
+	[LastUpdate] DATETIME NOT NULL DEFAULT(GETDATE())
 )
